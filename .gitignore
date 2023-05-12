@@ -1,0 +1,10 @@
+*.pyc
+
+checkpoints/
+data/
+logs/
+plots/
+
+.ipynb_checkpoints
+
+.idea/
