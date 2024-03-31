@@ -12,6 +12,7 @@ import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 def create_weather_features_for_img(row):
+    print(row['donor_date'])
     placement_date = row['date_placed_ARF']
     img_date = row['correct_img_date']
 
@@ -19,11 +20,16 @@ def create_weather_features_for_img(row):
     ADD_thres5 = 0
     ADD_thres10 = 0
     ADD_thres15 = 0
-    
+    ADD_thres20 = 0
+    ADD_thres25 = 0
+    ADD_thres30 = 0
+    '''    
     ADH_thres0 = 0
     ADH_thres5 = 0
     ADH_thres10 = 0
     ADH_thres15 = 0
+    '''
+
     while (placement_date <= img_date):
         # get weather for placement_date
         weather_current_df = weather_df[weather_df.date_time.dt.date == placement_date]
@@ -39,8 +45,13 @@ def create_weather_features_for_img(row):
             ADD_thres10 += avg_temp
         if avg_temp >= 15:
             ADD_thres15 += avg_temp
-        
-
+        if avg_temp >= 20:
+            ADD_thres20 += avg_temp
+        if avg_temp >= 25:
+            ADD_thres25 += avg_temp
+        if avg_temp >= 30:
+            ADD_thres30 += avg_temp
+        '''
         # calculate ADH with varying temp thresholds
         total_temp_thres0 = weather_current_df[weather_current_df.HourlyDryBulbTemperature >= 0]['HourlyDryBulbTemperature'].sum()
         ADH_thres0 += total_temp_thres0
@@ -53,7 +64,7 @@ def create_weather_features_for_img(row):
         
         total_temp_thres15 = weather_current_df[weather_current_df.HourlyDryBulbTemperature >= 15]['HourlyDryBulbTemperature'].sum()
         ADH_thres15 += total_temp_thres15
-
+        '''
         # go to the next day
         placement_date += datetime.timedelta(days=1)
 
@@ -62,17 +73,20 @@ def create_weather_features_for_img(row):
     row['ADD_thres5'] = ADD_thres5
     row['ADD_thres10'] = ADD_thres10
     row['ADD_thres15'] = ADD_thres15
-    
+    row['ADD_thres20'] = ADD_thres20
+    row['ADD_thres25'] = ADD_thres25
+    row['ADD_thres30'] = ADD_thres30
+    ''' 
     row['ADH_thres0'] = ADH_thres0
     row['ADH_thres5'] = ADH_thres5
     row['ADH_thres10'] = ADH_thres10
     row['ADH_thres15'] = ADH_thres15
-
+    '''
     return row
 
 
 if __name__=="__main__":
-    subset_df = pd.read_pickle('./data/subset_master_dataset.pkl')
+    subset_df = pd.read_pickle('./data/Gelderman_SOD_cohort/unique_donor_date.pkl')
     weather_df = pd.read_pickle('/data/anau/temp_humidity_data/data/LCD/lcd_hourly.pkl')
     print('# of imgs:', subset_df.shape[0])
 
@@ -85,6 +99,6 @@ if __name__=="__main__":
     endtime = time.time()
     print(f"Time taken {endtime-starttime} seconds")
     
-    with open('./data/test.pkl', 'wb') as f:
+    with open('./data/Gelderman_SOD_cohort/unique_donor_date_w_ADD.pkl', 'wb') as f:
         pickle.dump(result_ls, f)
 
