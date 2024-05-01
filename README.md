@@ -4,6 +4,7 @@ This repo focuses on PMI estimation.
 ./data
 * img_PMIs.csv and img_PMIs_no_negs.csv - images aligned with a PMI. The latter contains no negative PMIs. Files were created with ../notebooks/01_generate_pmi_per_image.ipynb.
 * master_dataset.[csv and pkl] - images aligned with available image attributes, such as donor demographics, anatomical data (existing and predicted), and stage of decay data (existing and predicted). Files were created with ../notebooks/02_create_master_dataset.ipynb.
+* master_dataset_w_ADD.csv - same as master_dataset.[csv and pkl] but with ADD features. 
 * unique_donor_data.[csv and pkl] - output from ../notebooks/add_ADD_ADH_features.ipynp and input to create_weather_related_features_parallelized.py.
 * Gelderman_SOD_cohort - this folder contains data related to the Gelderman SOD-labeled cohort. 
 
