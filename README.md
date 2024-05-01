@@ -25,6 +25,7 @@ This repo focuses on PMI estimation.
 * sample_for_additional_labeling2.ipynb - samples the entire decay process for certain donors. Was done to have some donors whose entire decay process is SOD-labeled. Additional details here: https://github.com/icputrd/pmi_estimation/tree/main/labeling.
 
 * process_additional_labels.ipynb - processes the additional samples from sample_for_additional_labeling.ipynb and prepares a dataset for PMI estimation.
+* PMI_from_ADD.ipynb - back-calculates PMI from ADD. 
 
 #### ./regression_analysis
 This folder contains all code and data for 4th paper (PMI estimation).
