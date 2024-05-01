@@ -1,7 +1,7 @@
 This repo focuses on PMI estimation.
 
 ### Folder/File details
-###### ./
+#### ./
 * create_weather_related_features_parallelized.py - script that calculates ADD and ADH for different thresholds. Uses python's multiprocessing package to speed up code. Use ./notebooks/add_ADD_ADH_features.ipynb to preapre data for this script. 
 
 ###### ./data
