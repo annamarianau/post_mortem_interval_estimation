@@ -1,5 +1,5 @@
-# This script computes weather-history-related image features per image (row of img_file) using the multiprocessing package because create_weather_related_features.py was taking too long.
-# For approx 6000 imgs, script ran for about 5 hours. 
+# This script calculates ADD and ADH for varying thresholds using the multiprocessing package.
+# For 38K rows, script ran for 60 hours (2.5 days).
 # To run: python3 create_weather_related_features_parallelized.py
 import pandas as pd
 import numpy as np
@@ -86,7 +86,7 @@ def create_weather_features_for_img(row):
 
 
 if __name__=="__main__":
-    subset_df = pd.read_pickle('./data/Gelderman_SOD_cohort/unique_donor_date.pkl')
+    subset_df = pd.read_pickle('./data/unique_donor_date.pkl')
     weather_df = pd.read_pickle('/data/anau/temp_humidity_data/data/LCD/lcd_hourly.pkl')
     print('# of imgs:', subset_df.shape[0])
 
@@ -99,6 +99,6 @@ if __name__=="__main__":
     endtime = time.time()
     print(f"Time taken {endtime-starttime} seconds")
     
-    with open('./data/Gelderman_SOD_cohort/unique_donor_date_w_ADD.pkl', 'wb') as f:
+    with open('./data/unique_donor_date_w_ADD.pkl', 'wb') as f:
         pickle.dump(result_ls, f)
 
