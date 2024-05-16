@@ -27,7 +27,4 @@ This repo focuses on PMI estimation.
 * process_additional_labels.ipynb - processes the additional samples from sample_for_additional_labeling.ipynb and prepares a dataset for PMI estimation.
 * PMI_from_ADD.ipynb - back-calculates PMI from ADD. 
 
-#### ./regression_analysis
-This folder contains all code and data for 4th paper (PMI estimation).
-
 
